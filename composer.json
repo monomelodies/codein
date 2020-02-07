@@ -18,12 +18,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "Sensi\\Codein\\": "src/"
+            "Monomelodies\\Codein\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Sensi\\Codein\\Test\\": "tests/files/"
+            "Monomelodies\\Codein\\Test\\": "tests/files/"
         }
     },
     "require-dev": {
