@@ -1,6 +1,6 @@
 <?php
 
-namespace Sensi\Codein;
+namespace Monomelodies\Codein;
 
 use Monolyth\Cliff;
 use Ansi;

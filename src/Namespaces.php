@@ -1,6 +1,6 @@
 <?php
 
-namespace Sensi\Codein;
+namespace Monomelodies\Codein;
 
 use Generator;
 
