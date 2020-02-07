@@ -130,7 +130,7 @@ class Command extends Cliff\Command
         $option = preg_replace_callback('@/([a-z])@', function ($match) {
             return '\\'.strtoupper($match[1]);
         }, $option);
-        return $option;
+        return "$option\\Check";
     }
 }
 
