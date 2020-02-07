@@ -1,6 +1,6 @@
 {
-    "name": "sensimedia/codein",
-    "description": "Code analysis library",
+    "name": "monomelodies/codein",
+    "description": "PHP code analysis library",
     "type": "library",
     "license": "proprietary",
     "authors": [
