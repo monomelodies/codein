@@ -1,0 +1,34 @@
+{
+    "name": "sensimedia/codein",
+    "description": "Code analysis library",
+    "type": "library",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Marijn Ophorst",
+            "email": "marijn@sensimedia.nl"
+        }
+    ],
+    "require": {
+        "simoneast/simple-ansi-colors": "^1.0",
+        "monolyth/cliff": "^0.6.0"
+    },
+    "bin": [
+        "bin/codein"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Sensi\\Codein\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Sensi\\Codein\\Test\\": "tests/files/"
+        }
+    },
+    "require-dev": {
+        "toast/unit": "^2.1",
+        "gentry/gentry": "^0.13.16",
+        "gentry/toast": "^0.1.1"
+    }
+}

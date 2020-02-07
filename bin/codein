@@ -1,0 +1,10 @@
+#!/usr/bin/php
+<?php
+
+namespace Sensi\Codein;
+
+require_once 'vendor/autoload.php';
+
+$command = new Command;
+$command->execute();
+
