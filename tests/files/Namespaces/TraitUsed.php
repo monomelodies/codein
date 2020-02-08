@@ -1,8 +1,8 @@
 <?php
 
-namespace Sensi\Codein\Test\Namespaces;
+namespace Monomelodies\Codein\Test\Namespaces;
 
-use Sensi\Codein\Test\Foo;
+use Monomelodies\Codein\Test\Foo;
 
 class TraitUsed
 {
