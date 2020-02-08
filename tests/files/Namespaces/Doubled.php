@@ -1,6 +1,6 @@
 <?php
 
-namespace Sensi\Codein\Test\Namespaces;
+namespace Monomelodies\Codein\Test\Namespaces;
 
 use Foo\Foo\Foo;
 use Foo\Foo\Bar;
