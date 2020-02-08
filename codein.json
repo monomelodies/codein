@@ -1,8 +1,5 @@
 {
     "checks": [
-        "sensi\/codein\/namespaces",
-        "sensi\/codein\/typehints",
-        "sensi\/codein\/properties",
-        "sensi\/codein\/doccomments"
+        "monomelodies\/codein\/test"
     ]
 }
