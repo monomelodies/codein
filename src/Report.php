@@ -37,8 +37,8 @@ abstract class Report
         return str_replace(
             ['{file}', '{line}', '{class}', '{method}', '{property}'],
             [
-                $this->reflection->getFile(),
-                $this->reflected->getLine(),
+                $this->reflection->getFileName(),
+                $this->reflected->getStartLine(),
                 $this->reflection->name,
                 isset($this->reflected) ? $this->reflected->getName() : '',
                 isset($this->reflected) ? $this->reflected->getName() : '',
