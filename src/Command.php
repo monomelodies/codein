@@ -16,6 +16,9 @@ class Command extends Cliff\Command
     /** @var bool */
     public $recursive = false;
 
+    /** @var bool */
+    public $fix = false;
+
     /** @var int */
     private $errs = 0;
 
@@ -42,7 +45,7 @@ class Command extends Cliff\Command
         }
         array_walk($this->check, function (&$check) : void {
             $class = $this->optionToClassName($check);
-            $check = new $class;
+            $check = new $class($this->fix);
         });
         $errs = $this->walk($dir);
         if (isset($errs)) {
@@ -113,7 +116,11 @@ class Command extends Cliff\Command
         foreach ($this->check as $errors) {
             foreach ($errors->check($file) as $error) {
                 ++$this->errs;
-                fwrite(STDOUT, Ansi::tagsToColors("$error<reset>\n"));
+                if ($this->fix) {
+                    $error->fix();
+                } else {
+                    fwrite(STDOUT, Ansi::tagsToColors($error->getMessage()."<reset>\n"));
+                }
             }
         }
     }
