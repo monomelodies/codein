@@ -1,9 +1,9 @@
-# sensimedia/codein
+# monomelodies/codein
 Code analysis, creation and modification library
 
 ## Installation
 ```sh
-$ composer require --dev sensimedia/codein
+$ composer require --dev monomelodies/codein
 ```
 
 ## Usage
@@ -33,8 +33,8 @@ versions, for instance).
 Let's add a check for those return type hints:
 
 ```sh
-$ composer require --dev sensimedia/codein-typehints
-$ vendor/bin/codein --check=sensimedia/codein-typehints path/to/file
+$ composer require --dev monomelodies/codein-typehints
+$ vendor/bin/codein --check=monomelodies/codein-typehints path/to/file
 ```
 
 ## Writing plugins
@@ -44,6 +44,18 @@ and returns a `Generator`. Every time your plugin encounters a code smell, it
 should `yield` a string containing an error message. You can use the builtin
 `extractClass` method to get the name of the class contained in the file,
 allowing you to inspect.
+
+Codein auto-appends the classname `Check` to the namespace specified in the
+`--check=...` option. Normal namespace resolution rules are applied:
+
+- forward slashes are replaced with backward slashes;
+- each part starts with a capital letter;
+- dashes are converted to snakeCase.
+
+E.g., `monomelodies/codein-typehints` resolves to the class
+`Monomelodies\CodeinTypehints\Check`.
+
+Look at existing plugins to get a feel for this.
 
 The yielded messages are formatted using
 [simple ansi colors](https://github.com/simoneast/simple-ansi-colors), with a
@@ -62,8 +74,8 @@ It allows you to specify a few things:
   central file.
 - A `constructors` object containing a key/value store of classnames with an
   array of the arguments to be used during construction when inspecting. Note
-  that these arguments are verbatim; e.g. a string should be written a "'this is
-  a string'" (note the nested quotes). This is because some classes will expect
-  an instantiated object in their constructor arguments, allowing you to specify
-  something like "new FooBar" as well.
+  that these arguments are verbatim; e.g. a string should be written as `"'this
+  is a string'"` (note the nested quotes). This is because some classes will
+  expect   an instantiated object in their constructor arguments, allowing you
+  to specify something like "new FooBar" as well.
 
