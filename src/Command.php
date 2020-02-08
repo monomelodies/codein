@@ -49,7 +49,7 @@ class Command extends Cliff\Command
         }
         array_walk($this->check, function (&$check) : void {
             $class = $this->optionToClassName($check);
-            $check = new $class($this->fix);
+            $check = new $class;
             if (!($check instanceof Check)) {
                 throw new CheckException(get_class($check)." is not an instance of Monomelodies\\Codein\\Check");
             }
@@ -123,9 +123,11 @@ class Command extends Cliff\Command
         foreach ($this->check as $errors) {
             foreach ($errors->check($file) as $error) {
                 ++$this->errs;
+                $fixed = false;
                 if ($this->fix) {
-                    $error->fix();
-                } else {
+                    $fixed = $error->fix();
+                }
+                if (!$fixed) {
                     $this->output(STDOUT, Ansi::tagsToColors($error->getMessage()."<reset>\n"));
                 }
             }
