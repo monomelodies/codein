@@ -1,8 +1,8 @@
 <?php
 
-namespace Sensi\Codein\Test\Namespaces;
+namespace Monomelodies\Codein\Test\Namespaces;
 
-use Sensi\Codein\Test\Bar;
+use Monomelodies\Codein\Test\Bar;
 
 class ImplementsInterface implements Bar
 {
