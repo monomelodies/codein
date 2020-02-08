@@ -46,5 +46,15 @@ abstract class Report
             $this->message
         );
     }
+
+    /**
+     * Attempt to fix the code smell in question. Custom reports must override
+     * this in order to do something useful :)
+     *
+     * @return bool True if the fix was succesfull, else false.
+     */
+    public function fix() : bool
+    {
+    }
 }
 
