@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3f8e77617d1dd26e600aa68001be67f1",
+    "content-hash": "7b8fc476dcdc807549071bf5d52174e0",
     "packages": [
         {
             "name": "monolyth/cliff",
@@ -615,16 +615,16 @@
         },
         {
             "name": "gentry/gentry",
-            "version": "0.13.16",
+            "version": "0.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gentry-php/gentry.git",
-                "reference": "3cc5a3732e139021e3b697abf98da987493df4a1"
+                "reference": "13246f9855c717a88f8a18f39fa59e4954b66651"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gentry-php/gentry/zipball/3cc5a3732e139021e3b697abf98da987493df4a1",
-                "reference": "3cc5a3732e139021e3b697abf98da987493df4a1",
+                "url": "https://api.github.com/repos/gentry-php/gentry/zipball/13246f9855c717a88f8a18f39fa59e4954b66651",
+                "reference": "13246f9855c717a88f8a18f39fa59e4954b66651",
                 "shasum": ""
             },
             "require": {
@@ -634,7 +634,7 @@
                 "monomelodies/reflex": "^0.3.0",
                 "php": ">=7.3",
                 "simoneast/simple-ansi-colors": "^1.0",
-                "twig/twig": ">=1.0",
+                "twig/twig": "^3.0",
                 "zeptech/annotations": "^1.0.0"
             },
             "require-dev": {
@@ -660,7 +660,7 @@
                 }
             ],
             "description": "PHP unit test generation tools",
-            "time": "2019-12-24T01:33:04+00:00"
+            "time": "2020-02-08T15:36:21+00:00"
         },
         {
             "name": "gentry/toast",
