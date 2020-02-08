@@ -4,7 +4,7 @@
     "templates": [
         {
             "path": "vendor/gentry/toast",
-            "output": "tests"
+            "output": "tests/toast"
         }
     ]
 }
