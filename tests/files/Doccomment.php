@@ -1,6 +1,6 @@
 <?php
 
-namespace Sensi\Codein\Test;
+namespace Monomelodies\Codein\Test;
 
 class Doccomment
 {
