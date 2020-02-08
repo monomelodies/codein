@@ -19,6 +19,9 @@ class Command extends Cliff\Command
     /** @var bool */
     public $fix = false;
 
+    /** @var bool */
+    public $silent = false;
+
     /** @var int */
     private $errs = 0;
 
@@ -28,6 +31,7 @@ class Command extends Cliff\Command
      *
      * @param string $dir
      * @return void
+     * @throws Monomelodies\Codein\CheckException
      */
     public function __invoke(string $dir) : void
     {
@@ -46,17 +50,20 @@ class Command extends Cliff\Command
         array_walk($this->check, function (&$check) : void {
             $class = $this->optionToClassName($check);
             $check = new $class($this->fix);
+            if (!($check instanceof Check)) {
+                throw new CheckException(get_class($check)." is not an instance of Monomelodies\\Codein\\Check");
+            }
         });
         $errs = $this->walk($dir);
         if (isset($errs)) {
             if (!$errs) {
-                fwrite(STDOUT, Ansi::tagsToColors("<green>Everything okay!<reset>\n"));
+                $this->output(STDOUT, Ansi::tagsToColors("<green>Everything okay!<reset>\n"));
             } elseif ($errs === 1) {
-                fwrite(STDOUT, Ansi::tagsToColors("\n<reset>Found <bold>$errs <reset>code smell.\n"));
+                $this->output(STDOUT, Ansi::tagsToColors("\n<reset>Found <bold>$errs <reset>code smell.\n"));
             } else {
-                fwrite(STDOUT, Ansi::tagsToColors("\n<reset>Found <bold>$errs <reset>code smells.\n"));
+                $this->output(STDOUT, Ansi::tagsToColors("\n<reset>Found <bold>$errs <reset>code smells.\n"));
             }
-            fwrite(STDOUT, "\n");
+            $this->output(STDOUT, "\n");
         }
     }
 
@@ -70,11 +77,11 @@ class Command extends Cliff\Command
     private function walk(string $dir) :? int
     {
         if (!$this->check) {
-            fwrite(STDERR, Ansi::tagsToColors("\n<red>No checks specified!<reset>\n\n"));
+            $this->output(STDERR, Ansi::tagsToColors("\n<red>No checks specified!<reset>\n\n"));
             return null;
         }
         if (!file_exists($dir)) {
-            fwrite(STDERR, Ansi::tagsToColors("\n<red><bold>$dir <reset><red>: no such file or directory.<reset>\n"));
+            $this->output(STDERR, Ansi::tagsToColors("\n<red><bold>$dir <reset><red>: no such file or directory.<reset>\n"));
             return null;
         }
         if (is_file($dir)) {
@@ -111,7 +118,7 @@ class Command extends Cliff\Command
         } catch (Throwable $e) {
             ++$this->errs;
             $error = $e->getMessage();
-            fwrite(STDERR, Ansi::tagsToColors("\n<red><bold>$file <reset><red>: error parsing file: <bold>$error<reset>\n"));
+            $this->output(STDERR, Ansi::tagsToColors("\n<red><bold>$file <reset><red>: error parsing file: <bold>$error<reset>\n"));
         }
         foreach ($this->check as $errors) {
             foreach ($errors->check($file) as $error) {
@@ -119,7 +126,7 @@ class Command extends Cliff\Command
                 if ($this->fix) {
                     $error->fix();
                 } else {
-                    fwrite(STDOUT, Ansi::tagsToColors($error->getMessage()."<reset>\n"));
+                    $this->output(STDOUT, Ansi::tagsToColors($error->getMessage()."<reset>\n"));
                 }
             }
         }
@@ -138,6 +145,13 @@ class Command extends Cliff\Command
             return '\\'.strtoupper($match[1]);
         }, $option);
         return "$option\\Check";
+    }
+
+    private function output($handle, string $string)
+    {
+        if (!$this->silent) {
+            fwrite($handle, $string);
+        }
     }
 }
 
