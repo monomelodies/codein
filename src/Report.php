@@ -38,7 +38,7 @@ abstract class Report
             ['{file}', '{line}', '{class}', '{method}', '{property}'],
             [
                 $this->reflection->getFileName(),
-                $this->reflected->getStartLine(),
+                isset($this->reflected) ? $this->reflected->getStartLine() : 0,
                 $this->reflection->name,
                 isset($this->reflected) ? $this->reflected->getName() : '',
                 isset($this->reflected) ? $this->reflected->getName() : '',
