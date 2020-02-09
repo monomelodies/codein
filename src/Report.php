@@ -55,6 +55,28 @@ abstract class Report
      */
     public function fix() : bool
     {
+        return false;
+    }
+
+    /**
+     * Helper to get the code.
+     *
+     * @return string
+     */
+    protected function getCode() : string
+    {
+        return file_get_contents($this->reflection->getFileName());
+    }
+
+    /**
+     * Helper to write the code.
+     *
+     * @param string $code
+     * @return void
+     */
+    protected function writeCode(string $code) : void
+    {
+        file_put_contents($this->reflection->getFileName(), $code);
     }
 }
 
