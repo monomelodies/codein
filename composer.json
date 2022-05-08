@@ -11,7 +11,7 @@
     ],
     "require": {
         "simoneast/simple-ansi-colors": "^1.0",
-        "monolyth/cliff": "^0.6.0"
+        "monolyth/cliff": "^0.7.0"
     },
     "bin": [
         "bin/codein"
